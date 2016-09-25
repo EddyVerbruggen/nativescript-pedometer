@@ -1,7 +1,7 @@
-*.js
 *.js.map
 *.log
 !scripts/*.js
+demo/hooks/**/*.js
 demo/app/*.js
 demo/*.d.ts
 demo/lib
