@@ -79,15 +79,15 @@ The `onUpdate` callback receives an object containing these properties:
 
 | Property | iOS? | Android | Description |
 --- | --- | --- | ---
-| startDate | &#9989; | future | This is when recording of the currently returned data was started. |
-| endDate | :white_check_mark: | future | This is when recording of the currently returned data was ended (usually: now). |
-| steps | [x] | future | The distance covered in meters between startDate and endDate. |
-| distance | [x] | [] | The number of floors ascended between startDate and endDate. |
-| floorsAscended | [x] | [] | The number of floors ascended between startDate and endDate. |
-| floorsDescended | [x] | [] | The number of floors descended between startDate and endDate. |
-| currentPace | [x] iOS 9+ | [] | The current pace in seconds per meter. |
-| currentCadence | [x] iOS 9+ | [] | The current cadence in steps per second. |
-| averageActivePace | [x] iOS 10+ | [] | The average pace while active in seconds per meter between startDate and endDate. |
+| startDate | :white_check_mark: | :ballot_box_with_check: future | This is when recording of the currently returned data was started. |
+| endDate | :white_check_mark: | :ballot_box_with_check: future | This is when recording of the currently returned data was ended (usually: now). |
+| steps | :white_check_mark: | :ballot_box_with_check: future | The distance covered in meters between startDate and endDate. |
+| distance | :white_check_mark: | :white_medium_square: | The number of floors ascended between startDate and endDate. |
+| floorsAscended | :white_check_mark: | :white_medium_square: | The number of floors ascended between startDate and endDate. |
+| floorsDescended | :white_check_mark: | :white_medium_square: | The number of floors descended between startDate and endDate. |
+| currentPace | :white_check_mark: iOS 9+ | :white_medium_square: | The current pace in seconds per meter. |
+| currentCadence | :white_check_mark: iOS 9+ | :white_medium_square: | The current cadence in steps per second. |
+| averageActivePace | :white_check_mark: iOS 10+ | :white_medium_square: | The average pace while active in seconds per meter between startDate and endDate. |
 
 If you want to check beforehand if things like `currentPace` are available,
 there's a few functions similar to `isStepCountingAvailable` that you can invoke:
