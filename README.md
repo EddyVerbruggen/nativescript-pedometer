@@ -78,7 +78,7 @@ pedometer.startUpdates({
 The `onUpdate` callback receives an object containing these properties:
 
 | Property | iOS? | Android | Description |
---- | --- | ---
+--- | --- | --- | ---
 | startDate | [x] | future | This is when recording of the currently returned data was started. |
 | endDate | [x] | future | This is when recording of the currently returned data was ended (usually: now). |
 | steps | [x] | future | The distance covered in meters between startDate and endDate. |
