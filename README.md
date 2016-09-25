@@ -85,9 +85,9 @@ The `onUpdate` callback receives an object containing these properties:
 | distance | :white_check_mark: | :white_medium_square: | The number of floors ascended between startDate and endDate. |
 | floorsAscended | :white_check_mark: | :white_medium_square: | The number of floors ascended between startDate and endDate. |
 | floorsDescended | :white_check_mark: | :white_medium_square: | The number of floors descended between startDate and endDate. |
-| currentPace | :white_check_mark: iOS 9+ | :white_medium_square: | The current pace in seconds per meter. |
-| currentCadence | :white_check_mark: iOS 9+ | :white_medium_square: | The current cadence in steps per second. |
-| averageActivePace | :white_check_mark: iOS 10+ | :white_medium_square: | The average pace while active in seconds per meter between startDate and endDate. |
+| currentPace | :white_check_mark: iOS9+ | :white_medium_square: | The current pace in seconds per meter. |
+| currentCadence | :white_check_mark: iOS9+ | :white_medium_square: | The current cadence in steps per second. |
+| averageActivePace | :white_check_mark: iOS10+ | :white_medium_square: | The average pace while active in seconds per meter between startDate and endDate. |
 
 If you want to check beforehand if things like `currentPace` are available,
 there's a few functions similar to `isStepCountingAvailable` that you can invoke:
