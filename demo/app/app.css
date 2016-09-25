@@ -1,0 +1,58 @@
+﻿page {
+  background-color: #F4F4F4;
+}
+
+.tab-content {
+  color: #808080;
+  padding: 20;
+}
+
+Label {
+  font-size: 15;
+  color: #555;
+  padding: 6 0;
+}
+
+.title {
+  color: #222;
+  font-size: 18;
+  padding-top: 18;
+}
+
+.error {
+  color: #FF0000
+}
+
+.key {
+  color: #555
+}
+
+.value {
+  color: #888
+}
+
+button {
+  background-color: #3598db;
+  padding: 3 0;
+  margin: 3 10;
+  font-size: 12;
+  border-radius: 4;
+  height: 30;
+}
+
+.button {
+  color: #FFFFFF;
+}
+
+.button-start {
+  background-color: #00BB00;
+}
+
+.button-stop {
+  background-color: #DD0000;
+}
+
+.button-availability {
+  margin: 3;
+  font-size: 12;
+}
