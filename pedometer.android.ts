@@ -1,9 +1,21 @@
 import {Common, PedometerStartUpdatesOptions, PedometerStartEventUpdatesOptions, PedometerQueryOptions} from "./pedometer.common";
 import * as utils from "utils/utils";
 
+enum STATE {
+  STARTING,
+  STARTED,
+  ERROR_FAILED_TO_START,
+  STOPPED
+}
+
 export class Pedometer extends Common {
 
+ private sensor;
  private sensorManager;
+ private sensorEventListener;
+ private state: STATE;
+ private startSteps = 0;
+ private startTimestamp = 0;
 
  constructor() {
    super();
@@ -12,8 +24,8 @@ export class Pedometer extends Common {
 
  public isStepCountingAvailable(): Promise<any> {
     return new Promise((resolve, reject) => {
-      let sensors = this.sensorManager.getSensorList("android.sensor.step_counter"); // android.hardware.Sensor.TYPE_STEP_COUNTER);
-      resolve(sensors !== null && sensors.length > 0);
+      let sensors = this.sensorManager.getSensorList(19); // android.hardware.Sensor.TYPE_STEP_COUNTER);
+      resolve(sensors.size() > 0);
     });
  }
 
@@ -55,8 +67,51 @@ export class Pedometer extends Common {
           return;
         }
 
-        // TODO I don't have a compatible device to test.. so this needs to wait
-        reject("Not implemented on Android yet (need a testdevice!)");
+        let that = this;
+        let sensors = this.sensorManager.getSensorList(19); // android.hardware.Sensor.TYPE_STEP_COUNTER);
+        if (sensors.size() > 0) {
+          this.sensor = sensors.get(0);
+          this.startSteps = 0;
+          this.startTimestamp = new Date().getTime();
+
+          this.sensorEventListener = new android.hardware.SensorEventListener({
+            onSensorChanged: function(sensorEvent) {
+              if (sensorEvent.sensor.getType() === 19) {
+                if (that.state === STATE.STOPPED) {
+                  return;
+                }
+                that.state = STATE.STARTED;
+
+                let steps = sensorEvent.values[0];
+
+                if (that.startSteps === 0) {
+                  that.startSteps = steps;
+                }
+
+                steps = steps - that.startSteps;
+
+                arg.onUpdate({
+                  startDate: new Date(that.startTimestamp),
+                  endDate: new Date(),
+                  steps: steps
+                });
+              }
+            },
+            onAccuracyChanged: function(sensor, accuracy) {
+              // ignoring this event
+            }
+          });
+
+          if (this.sensorManager.registerListener(this.sensorEventListener, this.sensor, android.hardware.SensorManager.SENSOR_DELAY_UI)) {
+            this.state = STATE.STARTING;
+          } else {
+            this.state = STATE.ERROR_FAILED_TO_START;
+            reject("Failed to start");
+          }
+        } else {
+          this.state = STATE.ERROR_FAILED_TO_START;
+          reject("Failed to start - No sensors found to register step counter listening to.");
+        }
       } catch (ex) {
         reject(ex);
       }
@@ -66,9 +121,11 @@ export class Pedometer extends Common {
  public stopUpdates(): Promise<any> {
     return new Promise((resolve, reject) => {
       try {
-        // TODO, same as startUpdates
-        // this.sensorManager.unregisterListener(..);
-        reject("Not implemented on Android yet (need a testdevice!)");
+        if (this.sensorEventListener) {
+          this.sensorManager.unregisterListener(this.sensorEventListener);
+          this.state = STATE.STOPPED;
+        }
+        resolve();
       } catch (ex) {
         reject(ex);
       }

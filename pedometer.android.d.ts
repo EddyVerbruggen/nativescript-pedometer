@@ -1,6 +1,11 @@
 import { Common, PedometerStartUpdatesOptions } from "./pedometer.common";
 export declare class Pedometer extends Common {
+    private sensor;
     private sensorManager;
+    private sensorEventListener;
+    private state;
+    private startSteps;
+    private startTimestamp;
     constructor();
     isStepCountingAvailable(): Promise<any>;
     isDistanceAvailable(): Promise<any>;

@@ -1,3 +1,4 @@
+.idea
 *.js.map
 *.log
 !scripts/*.js
