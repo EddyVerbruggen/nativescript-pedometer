@@ -153,7 +153,6 @@ export class Pedometer extends Common {
 
         this.cmPedometer.startPedometerEventUpdatesWithHandler(function (cmPedometerEvent, error) {
           if (error) {
-            console.log(error);
             reject(error.localizedDescription);
           } else {
             let isPaused = cmPedometerEvent.type === CMPedometerEventTypePause;

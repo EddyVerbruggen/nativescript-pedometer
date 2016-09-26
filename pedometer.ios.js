@@ -132,7 +132,6 @@ var Pedometer = (function (_super) {
                 }
                 _this.cmPedometer.startPedometerEventUpdatesWithHandler(function (cmPedometerEvent, error) {
                     if (error) {
-                        console.log(error);
                         reject(error.localizedDescription);
                     }
                     else {

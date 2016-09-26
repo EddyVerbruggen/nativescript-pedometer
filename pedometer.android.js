@@ -74,10 +74,6 @@ var Pedometer = (function (_super) {
                                     that_1.startSteps = steps;
                                 }
                                 steps = steps - that_1.startSteps;
-                                console.log("-- onSensorChanged.accuracy: " + sensorEvent.accuracy);
-                                console.log("-- onSensorChanged custom start ts: " + that_1.startTimestamp);
-                                console.log("-- onSensorChanged custom end ts: " + new Date().getTime());
-                                console.log("-- onSensorChanged.steps: " + steps);
                                 arg.onUpdate({
                                     startDate: new Date(that_1.startTimestamp),
                                     endDate: new Date(),
@@ -86,7 +82,6 @@ var Pedometer = (function (_super) {
                             }
                         },
                         onAccuracyChanged: function (sensor, accuracy) {
-                            console.log("-- onAccuracyChanged: " + accuracy);
                         }
                     });
                     if (_this.sensorManager.registerListener(_this.sensorEventListener, _this.sensor, android.hardware.SensorManager.SENSOR_DELAY_UI)) {
