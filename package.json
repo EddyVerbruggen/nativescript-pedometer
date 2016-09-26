@@ -1,7 +1,7 @@
 {
   "name": "nativescript-pedometer",
-  "version": "1.0.0",
-  "description": "Your awesome NativeScript plugin.",
+  "version": "2.0.0",
+  "description": "NativeScript pedometer plugin. Step counting FTW!",
   "main": "pedometer.js",
   "typings": "index.d.ts",
   "nativescript": {
@@ -12,7 +12,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "demo.ios": "npm run preparedemo && cd demo && tns emulate ios --device \"iPhone 6\"",
+    "demo.ios": "npm run preparedemo && cd demo && tns emulate ios --device \"iPhone 7\"",
     "demo.ios.device": "npm run preparedemo && cd demo && tns run ios",
     "demo.android": "npm run preparedemo && cd demo && tns run android",
     "preparedemo": "npm run build && cd demo && tns plugin remove nativescript-pedometer && tns plugin add .. && tns install",

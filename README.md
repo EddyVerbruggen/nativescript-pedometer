@@ -4,7 +4,7 @@
 
 ## Supported platforms
 * iOS 8 (the newer the OS the more features are available)
-* Android is work in progress (need a device to test with.. help is welcome!)
+* Android, any device with a step counter sensor
 
 ## Installation
 From the command prompt go to your app's root folder and execute:
@@ -24,10 +24,7 @@ You can run the demo app from the root of the project by typing `npm run demo.io
 ## API
 
 ### `isStepCountingAvailable`
-The key feature of this plugin is counting steps. And it's also the only feature that a
-future Android implementation can (and will) support.
-
-It's unavailable on iOS 7 and lower, and (currently) all Android devices, so checking this makes sense.
+The key feature of this plugin is counting steps. And it's also the only feature that Android supports.
 
 ##### TypeScript
 ```js
@@ -77,11 +74,11 @@ pedometer.startUpdates({
 
 The `onUpdate` callback receives an object containing these properties:
 
-| Property | iOS? | Android | Description |
+| Property | iOS? | Android? | Description |
 --- | --- | --- | ---
-| startDate | :white_check_mark: | :ballot_box_with_check: future | This is when recording of the currently returned data was started. |
-| endDate | :white_check_mark: | :ballot_box_with_check: future | This is when recording of the currently returned data was ended (usually: now). |
-| steps | :white_check_mark: | :ballot_box_with_check: future | The distance covered in meters between startDate and endDate. |
+| startDate | :white_check_mark: | :white_check_mark: | This is when recording of the currently returned data was started. |
+| endDate | :white_check_mark: | :white_check_mark: | This is when recording of the currently returned data was ended (usually: now). |
+| steps | :white_check_mark: | :white_check_mark: | The distance covered in meters between startDate and endDate. |
 | distance | :white_check_mark: | :white_medium_square: | The number of floors ascended between startDate and endDate. |
 | floorsAscended | :white_check_mark: | :white_medium_square: | The number of floors ascended between startDate and endDate. |
 | floorsDescended | :white_check_mark: | :white_medium_square: | The number of floors descended between startDate and endDate. |
@@ -98,13 +95,13 @@ there's a few functions similar to `isStepCountingAvailable` that you can invoke
 * `isCadenceAvailable`
 
 ### `stopUpdates`
-You can wire up a Promise but there's no 
+You can wire up a Promise but there's no real need.
 
 ```js
 pedometer.stopUpdates();
 ```
 
-### `query`
+### `query` (iOS)
 Instead of listening to "live" updates you can query historic data:
 
 ```js
@@ -117,7 +114,7 @@ pedometer.query({
 });
 ```
 
-### `startEventUpdates`
+### `startEventUpdates` (iOS)
 From iOS 10 onwards it's possible to get notified whenever the device detects a switch
 between a 'paused' and 'resumed' state (so starting/stopping walking).
 
@@ -143,4 +140,5 @@ The `onUpdate` callback receives an object containing these properties:
 | type | Either "pause" or "resume". |
 
 ## Changelog
+* 2.0.0  Android support added.
 * 1.0.0  Initial release, iOS only, but full featured.
