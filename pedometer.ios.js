@@ -135,7 +135,7 @@ var Pedometer = (function (_super) {
                         reject(error.localizedDescription);
                     }
                     else {
-                        var isPaused = cmPedometerEvent.type === CMPedometerEventTypePause;
+                        var isPaused = cmPedometerEvent.type === 0;
                         arg.onUpdate({
                             type: isPaused ? "pause" : "resume",
                             date: cmPedometerEvent.date

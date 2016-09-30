@@ -1,7 +1,5 @@
 import {Common, PedometerStartUpdatesOptions, PedometerStartEventUpdatesOptions, PedometerQueryOptions} from "./pedometer.common";
 
-declare var CMPedometer, CMPedometerEventTypePause, CMPedometerEventTypeResume, NSDate;
-
 export class Pedometer extends Common {
 
  private cmPedometer;
@@ -155,7 +153,7 @@ export class Pedometer extends Common {
           if (error) {
             reject(error.localizedDescription);
           } else {
-            let isPaused = cmPedometerEvent.type === CMPedometerEventTypePause;
+            let isPaused = cmPedometerEvent.type === CMPedometerEventType.Pause;
             arg.onUpdate({
               type: isPaused ? "pause" : "resume",
               date: cmPedometerEvent.date
