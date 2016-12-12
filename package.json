@@ -2,7 +2,7 @@
   "name": "nativescript-pedometer",
   "version": "2.0.1",
   "description": "NativeScript pedometer plugin. Step counting FTW!",
-  "main": "pedometer.js",
+  "main": "pedometer",
   "typings": "index.d.ts",
   "nativescript": {
     "platforms": {
