@@ -16,8 +16,7 @@
     "demo.ios.device": "npm run preparedemo && cd demo && tns run ios",
     "demo.android": "npm run preparedemo && cd demo && tns run android",
     "preparedemo": "npm run build && cd demo && tns plugin remove nativescript-pedometer && tns plugin add .. && tns install",
-    "setup": "npm i && cd demo && npm i && cd .. && npm run build && cd demo && tns plugin add .. && cd ..",
-    "postclone": "npm i && node scripts/postclone.js"
+    "setup": "npm i && cd demo && npm i && cd .. && npm run build && cd demo && tns plugin add .. && cd .."
   },
   "repository": {
     "type": "git",
