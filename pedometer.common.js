@@ -5,3 +5,4 @@ var Common = (function () {
     return Common;
 }());
 exports.Common = Common;
+//# sourceMappingURL=pedometer.common.js.map

@@ -3,8 +3,9 @@ var pedometer_common_1 = require("./pedometer.common");
 var Pedometer = (function (_super) {
     __extends(Pedometer, _super);
     function Pedometer() {
-        _super.call(this);
-        this.cmPedometer = CMPedometer.new();
+        var _this = _super.call(this) || this;
+        _this.cmPedometer = CMPedometer.new();
+        return _this;
     }
     Pedometer.prototype.isStepCountingAvailable = function () {
         return new Promise(function (resolve, reject) {
@@ -164,3 +165,4 @@ var Pedometer = (function (_super) {
     return Pedometer;
 }(pedometer_common_1.Common));
 exports.Pedometer = Pedometer;
+//# sourceMappingURL=pedometer.ios.js.map

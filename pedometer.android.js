@@ -11,10 +11,11 @@ var STATE;
 var Pedometer = (function (_super) {
     __extends(Pedometer, _super);
     function Pedometer() {
-        _super.call(this);
-        this.startSteps = 0;
-        this.startTimestamp = 0;
-        this.sensorManager = utils.ad.getApplicationContext().getSystemService(android.content.Context.SENSOR_SERVICE);
+        var _this = _super.call(this) || this;
+        _this.startSteps = 0;
+        _this.startTimestamp = 0;
+        _this.sensorManager = utils.ad.getApplicationContext().getSystemService(android.content.Context.SENSOR_SERVICE);
+        return _this;
     }
     Pedometer.prototype.isStepCountingAvailable = function () {
         var _this = this;
@@ -120,3 +121,4 @@ var Pedometer = (function (_super) {
     return Pedometer;
 }(pedometer_common_1.Common));
 exports.Pedometer = Pedometer;
+//# sourceMappingURL=pedometer.android.js.map
