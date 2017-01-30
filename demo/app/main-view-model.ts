@@ -30,7 +30,10 @@ export class HelloWorldModel extends Observable {
   }
 
   private round(value: number, decimals: number) {
-    return Number(Math.round(value + "e" + decimals) + "e-" + decimals);
+    var strnumber = `${value}e${decimals}`;
+    var numround = Math.round(Number(strnumber));
+    var strfinal = `${numround}e-${decimals}`;
+    return Number(strfinal);
   }
 
   private formatDate(value: Date) {
