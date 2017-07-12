@@ -78,8 +78,8 @@ The `onUpdate` callback receives an object containing these properties:
 --- | --- | --- | ---
 | startDate | :white_check_mark: | :white_check_mark: | This is when recording of the currently returned data was started. |
 | endDate | :white_check_mark: | :white_check_mark: | This is when recording of the currently returned data was ended (usually: now). |
-| steps | :white_check_mark: | :white_check_mark: | The distance covered in meters between startDate and endDate. |
-| distance | :white_check_mark: | :white_medium_square: | The number of floors ascended between startDate and endDate. |
+| steps | :white_check_mark: | :white_check_mark: | Step count between startDate and endDate |
+| distance | :white_check_mark: | :white_medium_square: | The distance covered in meters between startDate and endDate. |
 | floorsAscended | :white_check_mark: | :white_medium_square: | The number of floors ascended between startDate and endDate. |
 | floorsDescended | :white_check_mark: | :white_medium_square: | The number of floors descended between startDate and endDate. |
 | currentPace | :white_check_mark: iOS9+ | :white_medium_square: | The current pace in seconds per meter. |
