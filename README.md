@@ -135,7 +135,7 @@ pedometer.startEventUpdates({
 The `onUpdate` callback receives an object containing these properties:
 
 | Property | Description |
---- | --- | ---
+--- | ---
 | date | The moment the event occured. |
 | type | Either "pause" or "resume". |
 
