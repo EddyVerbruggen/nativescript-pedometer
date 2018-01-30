@@ -29,12 +29,12 @@ The key feature of this plugin is counting steps. And it's also the only feature
 ##### TypeScript
 ```js
 // require the plugin
-import {Pedometer} from "nativescript-pedometer";
+import { Pedometer } from "nativescript-pedometer";
 
 // instantiate the plugin
 let pedometer = new Pedometer();
 
-pedometer.isStepCountingAvailable().then((avail) => {
+pedometer.isStepCountingAvailable().then(avail => {
   alert(avail ? "Yes" : "No");
 });
 ```
@@ -63,7 +63,7 @@ pedometer.startUpdates({
   fromDate: new Date(), // optional, default: now
   onUpdate: result => {
     // see the table below
-    console.log("Pedometer update: " + JSON.stringify(result));
+    console.log(`Pedometer update: ${JSON.stringify(result)}`);
   }
 }).then(() => {
   console.log("Pedometer updates started.");
