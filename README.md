@@ -61,13 +61,13 @@ If you want historic data pass in a custom `fromDate`.
 ```js
 pedometer.startUpdates({
   fromDate: new Date(), // optional, default: now
-  onUpdate: function(result) {
+  onUpdate: result => {
     // see the table below
     console.log("Pedometer update: " + JSON.stringify(result));
   }
 }).then(() => {
   console.log("Pedometer updates started.");
-}, (err) => {
+}, err => {
   console.log("Error: " + err);
 });
 ```
@@ -108,9 +108,9 @@ Instead of listening to "live" updates you can query historic data:
 pedometer.query({
   fromDate: new Date(new Date().getTime() - (1000 * 60 * 60)),
   toDate: new Date() // default
-}).then((result) => {
+}).then(result => {
   // see the table at 'startUpdates' above
-  console.log("Pedometer update: " + JSON.stringify(result));
+  console.log(`Pedometer update: ${JSON.stringify(result)}`);
 });
 ```
 
@@ -123,7 +123,7 @@ call `isEventTrackingAvailable` (which has a similar API to `isStepCountingAvail
 
 ```js
 pedometer.startEventUpdates({
-  onUpdate: function(result) {
+  onUpdate: result => {
     // see the table below
     console.log("Pedometer event update: " + JSON.stringify(result));
   }
