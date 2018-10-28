@@ -1,6 +1,6 @@
 # NativeScript Pedometer plugin
 
-<img src="https://raw.githubusercontent.com/EddyVerbruggen/nativescript-pedometer/master/tie-shoes.jpg" width="310px"/>
+<img src="https://raw.githubusercontent.com/EddyVerbruggen/nativescript-pedometer/master/media/tie-shoes.jpg" width="310px"/>
 
 ## Supported platforms
 * iOS 8 (the newer the OS the more features are available)
@@ -18,7 +18,7 @@ Want to dive in quickly? Check out [the demo app](demo)! Otherwise, continue rea
 
 You can run the demo app from the root of the project by typing `npm run demo.ios.device` and you'll see this:
 
-<img src="https://raw.githubusercontent.com/EddyVerbruggen/nativescript-pedometer/master/demo.png" width="375px"/>
+<img src="https://raw.githubusercontent.com/EddyVerbruggen/nativescript-pedometer/master/media/demo.png" width="375px"/>
 
 
 ## API
@@ -56,11 +56,11 @@ pedometer.isStepCountingAvailable(function(avail) {
 
 ### `startUpdates`
 To start receiving step count updates from this moment forward you can invoke `startUpdates`.
-If you want historic data pass in a custom `fromDate`.
+If you want historic data on iOS, pass in a custom `fromDate`.
 
 ```js
 pedometer.startUpdates({
-  fromDate: new Date(), // optional, default: now
+  fromDate: new Date(), // iOS only. Optional, default: now
   onUpdate: result => {
     // see the table below
     console.log(`Pedometer update: ${JSON.stringify(result)}`);

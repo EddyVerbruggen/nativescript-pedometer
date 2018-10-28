@@ -1,0 +1,5 @@
+*.map
+*.ts
+!index.d.ts
+!references.d.ts
+tsconfig.json

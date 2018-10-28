@@ -1,6 +1,6 @@
 {
   "name": "nativescript-pedometer",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "NativeScript pedometer plugin. Step counting FTW!",
   "main": "pedometer",
   "typings": "index.d.ts",
@@ -11,12 +11,10 @@
     }
   },
   "scripts": {
-    "build": "tsc",
-    "demo.ios": "npm run preparedemo && cd demo && tns emulate ios --device \"iPhone 7\"",
-    "demo.ios.device": "npm run preparedemo && cd demo && tns run ios",
-    "demo.android": "npm run preparedemo && cd demo && tns run android",
-    "preparedemo": "npm run build && cd demo && tns plugin remove nativescript-pedometer && tns plugin add .. && tns install",
-    "setup": "npm i && cd demo && npm i && cd .. && npm run build && cd demo && tns plugin add .. && cd .."
+    "build": "tsc --skipLibCheck",
+    "demo.ios": "npm run preparedemo && cd ../demo && tns run ios",
+    "demo.android": "npm run preparedemo && cd ../demo && tns run android",
+    "preparedemo": "npm run build && cd ../demo && tns plugin remove nativescript-pedometer && tns plugin add ../src && tns install"
   },
   "repository": {
     "type": "git",
@@ -41,16 +39,13 @@
   "bugs": {
     "url": "https://github.com/EddyVerbruggen/nativescript-pedometer/issues"
   },
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/EddyVerbruggen/nativescript-pedometer/blob/master/LICENSE"
-  },
+  "license": "MIT",
   "homepage": "https://github.com/EddyVerbruggen/nativescript-pedometer",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "tns-core-modules": "^2.3.0",
-    "tns-platform-declarations": "^2.4.4",
-    "typescript": "^2.1.0",
+    "tns-core-modules": "~4.2.0",
+    "tns-platform-declarations": "~4.2.0",
+    "typescript": "~2.7.0",
     "prompt": "^1.0.0",
     "rimraf": "^2.5.0"
   }

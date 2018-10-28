@@ -86,12 +86,11 @@ export class Pedometer extends Common {
 
         let fromDate = arg.fromDate;
         let toDate = arg.toDate || new Date();
-        let that = this;
-        this.cmPedometer.queryPedometerDataFromDateToDateWithHandler(fromDate, toDate, function (cmPedometerData, error) {
+        this.cmPedometer.queryPedometerDataFromDateToDateWithHandler(fromDate, toDate, (cmPedometerData, error) => {
           if (error) {
             reject(error.localizedDescription);
           } else {
-            resolve(that.getStepUpdate(cmPedometerData));
+            resolve(this.getStepUpdate(cmPedometerData));
           }
         });
       } catch (ex) {
@@ -109,12 +108,11 @@ export class Pedometer extends Common {
         }
 
         let fromDate = arg.fromDate || new Date();
-        let that = this;
-        this.cmPedometer.startPedometerUpdatesFromDateWithHandler(fromDate, function (cmPedometerData, error) {
+        this.cmPedometer.startPedometerUpdatesFromDateWithHandler(fromDate, (cmPedometerData, error) => {
           if (error) {
             reject(error.localizedDescription);
           } else {
-            arg.onUpdate(that.getStepUpdate(cmPedometerData));
+            arg.onUpdate(this.getStepUpdate(cmPedometerData));
           }
         });
         resolve();
@@ -142,14 +140,14 @@ export class Pedometer extends Common {
         if (typeof this.cmPedometer.startPedometerEventUpdatesWithHandler !== "function") {
           reject("Not supported");
           return;
-        };
+        }
 
         if (!arg || typeof arg.onUpdate !== "function") {
           reject("onUpdate argument is required");
           return;
         }
 
-        this.cmPedometer.startPedometerEventUpdatesWithHandler(function (cmPedometerEvent, error) {
+        this.cmPedometer.startPedometerEventUpdatesWithHandler((cmPedometerEvent, error) => {
           if (error) {
             reject(error.localizedDescription);
           } else {

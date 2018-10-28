@@ -4,15 +4,15 @@
       <TabViewItem title="Demo">
         <TabViewItem.view>
           <ScrollView>
-            <GridLayout columns="*, *" rows="auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto" horizontalAlignment="stretch" cssClass="tab-content">
+            <GridLayout columns="*, *" rows="auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto" horizontalAlignment="stretch" class="tab-content">
               <Label row="0" col="0" colSpan="2" text="Check availability" class="title" textWrap="true"/>
 
               <GridLayout row="1" col="0" colSpan="2" columns="*, *, *" rows="auto, auto" horizontalAlignment="stretch">
-                <Button row="0" col="0" text="Step counting" tap="{{ doCheckStepsAvailable }}" cssClass="button button-availability" textWrap="true"/>
+                <Button row="0" col="0" text="Step counting" tap="{{ doCheckStepsAvailable }}" class="button button-availability" textWrap="true"/>
                 <Button row="0" col="1" text="Distance calc" tap="{{ doCheckDistanceAvailable }}" class="button button-availability" textWrap="true"/>
                 <Button row="0" col="2" text="Floor counting" tap="{{ doCheckFloorCountingAvailable }}" class="button button-availability" textWrap="true"/>
 
-                <Button row="1" col="0" text="Pace" tap="{{ doCheckPaceAvailable }}" cssClass="button button-availability" textWrap="true"/>
+                <Button row="1" col="0" text="Pace" tap="{{ doCheckPaceAvailable }}" class="button button-availability" textWrap="true"/>
                 <Button row="1" col="1" text="Cadence" tap="{{ doCheckCadenceAvailable }}" class="button button-availability" textWrap="true"/>
                 <Button row="1" col="2" text="Event tracking" tap="{{ doCheckEventTrackingAvailable }}" class="button button-availability" textWrap="true"/>
               </GridLayout>
@@ -20,11 +20,11 @@
               <Label row="2" col="0" colSpan="2" text="Step data" class="title" textWrap="true"/>
 
               <iOS>
-                <Button row="3" col="0" text="Last hour" tap="{{ doQueryStepsLastHour }}" cssClass="button button-query" textWrap="true"/>
+                <Button row="3" col="0" text="Last hour" tap="{{ doQueryStepsLastHour }}" class="button button-query" textWrap="true"/>
                 <Button row="3" col="1" text="Today" tap="{{ doQueryStepsToday }}" class="button button-query" textWrap="true"/>
               </iOS>
 
-              <Button row="4" col="0" text="Start updates" tap="{{ doStartUpdates }}" cssClass="button button-start" textWrap="true"/>
+              <Button row="4" col="0" text="Start updates" tap="{{ doStartUpdates }}" class="button button-start" textWrap="true"/>
               <Button row="4" col="1" text="Stop updates" tap="{{ doStopUpdates }}" class="button button-stop" textWrap="true"/>
 
               <Label row="5" col="0" text="Steps" class="key" textWrap="true"/>
@@ -57,7 +57,7 @@
 
                 <Label row="14" col="0" colSpan="2" text="Event tracking" class="title" textWrap="true"/>
 
-                <Button row="15" col="0" text="Start updates" tap="{{ doStartEventUpdates }}" cssClass="button button-start" textWrap="true"/>
+                <Button row="15" col="0" text="Start updates" tap="{{ doStartEventUpdates }}" class="button button-start" textWrap="true"/>
                 <Button row="15" col="1" text="Stop updates" tap="{{ doStopEventUpdates }}" class="button button-stop" textWrap="true"/>
 
                 <Label row="16" col="0" text="Type" class="key" textWrap="true"/>
@@ -66,7 +66,7 @@
                 <Label row="17" col="0" text="Time" class="key" textWrap="true"/>
                 <Label row="17" col="1" text="{{ event_date }}" class="value" textWrap="true"/>
               </iOS>
-              
+
               <Label row="18" col="0" colSpan="2" text="{{ error }}" class="error" textWrap="true"/>
             </GridLayout>
           </ScrollView>
@@ -75,9 +75,9 @@
       <TabViewItem title="About">
         <TabViewItem.view>
           <ScrollView>
-            <StackLayout cssClass="tab-content">
+            <StackLayout class="tab-content">
               <!--<Image margin="10" src="~/res/telerik-logo.png" />-->
-              <Label text="Pedometer plugin demo" cssClass="title"/>
+              <Label text="Pedometer plugin demo" class="title"/>
               <Label text="The Pedometer plugin allows .." textWrap="true"/>
             </StackLayout>
           </ScrollView>

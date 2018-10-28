@@ -1,9 +1,0 @@
-.idea
-.vscode
-demo/
-*.png
-*.jpg
-*.log
-*.map
-*.ts
-!*.d.ts

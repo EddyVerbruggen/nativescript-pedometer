@@ -1,5 +1,5 @@
 import {Common, PedometerStartUpdatesOptions, PedometerStartEventUpdatesOptions, PedometerQueryOptions} from "./pedometer.common";
-import * as utils from "utils/utils";
+import * as utils from "tns-core-modules/utils/utils";
 
 enum STATE {
   STARTING,
@@ -67,37 +67,42 @@ export class Pedometer extends Common {
           return;
         }
 
-        let that = this;
         let sensors = this.sensorManager.getSensorList(19); // android.hardware.Sensor.TYPE_STEP_COUNTER);
         if (sensors.size() > 0) {
           this.sensor = sensors.get(0);
           this.startSteps = 0;
+
+          // unlike iOS, Android doesn't support history when querying the step sensor, so we're grabbing it manually
+          if (arg.fromDate) {
+            console.log("Note that unlike iOS, Android doesn't support historic step data. Alternative, use this: https://github.com/EddyVerbruggen/nativescript-health-data/tree/cb852903bbf8fbad7d63b6c1df799a97014746d1#query");
+          }
+
           this.startTimestamp = new Date().getTime();
 
           this.sensorEventListener = new android.hardware.SensorEventListener({
-            onSensorChanged: function(sensorEvent) {
+            onSensorChanged: sensorEvent => {
               if (sensorEvent.sensor.getType() === 19) {
-                if (that.state === STATE.STOPPED) {
+                if (this.state === STATE.STOPPED) {
                   return;
                 }
-                that.state = STATE.STARTED;
+                this.state = STATE.STARTED;
 
                 let steps = sensorEvent.values[0];
 
-                if (that.startSteps === 0) {
-                  that.startSteps = steps;
+                if (this.startSteps === 0) {
+                  this.startSteps = steps;
                 }
 
-                steps = steps - that.startSteps;
+                steps = steps - this.startSteps;
 
                 arg.onUpdate({
-                  startDate: new Date(that.startTimestamp),
+                  startDate: new Date(this.startTimestamp),
                   endDate: new Date(),
                   steps: steps
                 });
               }
             },
-            onAccuracyChanged: function(sensor, accuracy) {
+            onAccuracyChanged: (sensor, accuracy) => {
               // ignoring this event
             }
           });

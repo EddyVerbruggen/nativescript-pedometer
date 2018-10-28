@@ -1,5 +1,5 @@
-import {Observable} from "data/observable";
-import {Pedometer} from "nativescript-pedometer";
+import { Observable } from "data/observable";
+import { Pedometer } from "nativescript-pedometer";
 import * as dialogs from "ui/dialogs";
 
 declare var CMPedometer, CMPedometerEventTypePause, CMPedometerEventTypeResume, NSDate;
@@ -37,7 +37,7 @@ export class HelloWorldModel extends Observable {
   }
 
   private formatDate(value: Date) {
-    return value.toLocaleTimeString("en-us");
+    return value.toLocaleDateString("en-us") + " " + value.toLocaleTimeString("en-us");
   }
 
   public doCheckStepsAvailable() {
@@ -77,57 +77,57 @@ export class HelloWorldModel extends Observable {
   }
 
   public doQueryStepsLastHour() {
-    let that = this;
     this.pedometer.query({
       fromDate: new Date(new Date().getTime() - (1000 * 60 * 60)),
       toDate: new Date()
     }).then((result) => {
-      that.updateStepsUI(result, that);
+      this.updateStepsUI(result);
     }, (err) => {
       dialogs.alert({okButtonText: "OK", title: "Error", message: err});
     });
   }
 
   public doQueryStepsToday() {
-    let that = this;
     let midnight = new Date();
     midnight.setHours(0, 0, 0, 0);
     this.pedometer.query({
       fromDate: midnight,
       toDate: new Date()
     }).then((result) => {
-      that.updateStepsUI(result, that);
+      this.updateStepsUI(result);
     }, (err) => {
       dialogs.alert({okButtonText: "OK", title: "Error", message: err});
     });
   }
 
   public doStartUpdates() {
-    let that = this;
+    const fromDate = new Date(new Date().getTime() - (1000 * 60 * 60 * 24)); // a day ago
     this.pedometer.startUpdates({
-      fromDate: new Date(), // optional, default: now
-      onUpdate: function(result) {
-        that.updateStepsUI(result, that);
-      }
+      fromDate, // optional, default 'now'
+      onUpdate: result => this.updateStepsUI(result)
     }).then(() => {
-      dialogs.alert({okButtonText: "OK", title: "", message: "Pedometer updates started.\n\nRotate your device to force UI updates if things look stuck.."});
+      dialogs.alert({
+        okButtonText: "OK",
+        title: "",
+        message: "Pedometer updates started.\n\nRotate your device to force UI updates if things look stuck.."
+      });
     }, (err) => {
       dialogs.alert({okButtonText: "OK", title: "Error", message: err});
     });
   }
 
-  private updateStepsUI(result, that) {
+  private updateStepsUI(result) {
     console.log("Pedometer update: " + JSON.stringify(result));
 
-    that.set("step_startDate", that.formatDate(result.startDate));
-    that.set("step_endDate", that.formatDate(result.endDate));
-    that.set("step_steps", result.steps);
-    that.set("step_distance", that.round(result.distance, 3) + " meter");
-    that.set("step_floorsAsc", result.floorsAscended);
-    that.set("step_floorsDesc", result.floorsDescended);
-    that.set("step_currentPace", that.round((result.currentPace ? result.currentPace : 0), 3) + " seconds / meter");
-    that.set("step_currentCadence", that.round((result.currentCadence ? result.currentCadence : 0), 3) + " steps / second");
-    that.set("step_avgActivePace", that.round((result.averageActivePace ? result.averageActivePace : 0), 3) + " seconds / meter");
+    this.set("step_startDate", this.formatDate(result.startDate));
+    this.set("step_endDate", this.formatDate(result.endDate));
+    this.set("step_steps", result.steps);
+    this.set("step_distance", this.round(result.distance, 3) + " meter");
+    this.set("step_floorsAsc", result.floorsAscended);
+    this.set("step_floorsDesc", result.floorsDescended);
+    this.set("step_currentPace", this.round((result.currentPace ? result.currentPace : 0), 3) + " seconds / meter");
+    this.set("step_currentCadence", this.round((result.currentCadence ? result.currentCadence : 0), 3) + " steps / second");
+    this.set("step_avgActivePace", this.round((result.averageActivePace ? result.averageActivePace : 0), 3) + " seconds / meter");
   }
 
   public doStopUpdates() {
@@ -139,14 +139,17 @@ export class HelloWorldModel extends Observable {
   }
 
   public doStartEventUpdates() {
-    let that = this;
     this.pedometer.startEventUpdates({
-      onUpdate: function(result) {
-        that.set("event_date", that.formatDate(result.date));
-        that.set("event_type", result.type);
+      onUpdate: result => {
+        this.set("event_date", this.formatDate(result.date));
+        this.set("event_type", result.type);
       }
     }).then(() => {
-      dialogs.alert({okButtonText: "OK", title: "", message: "Pedometer event updates started.\n\nRotate your device to force UI updates if things look stuck.."});
+      dialogs.alert({
+        okButtonText: "OK",
+        title: "",
+        message: "Pedometer event updates started.\n\nRotate your device to force UI updates if things look stuck.."
+      });
     }, (err) => {
       dialogs.alert({okButtonText: "OK", title: "Error", message: err});
     });
